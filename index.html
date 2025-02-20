@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preparatoria Garmendia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* Definición de colores */
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #3498DB;
+            --accent-color: #E74C3C;
+            --light-color: #ECF0F1;
+            --text-color: #2C3E50;
+            --body-bg: #f5f6fa;
+        }
+
+        /* Estilos generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background-color: var(--body-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header con degradado y colores */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            color: var(--light-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        header p {
+            margin-top: 1rem;
+            font-size: 1.3em;
+            color: var(--light-color);
+            opacity: 0.9;
+        }
+
+        /* Navegación con colores definidos */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+        }
+
+        /* Secciones con bordes redondeados y sombras */
+        section {
+            padding: 4rem 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            background: var(--light-color);
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Tarjetas de carreras con gradientes y transiciones */
+        .carreras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .carrera-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .carrera-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Contenedor de mapa */
+        .map-container {
+            margin-top: 2rem;
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer con gradiente y colores */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--light-color);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Diseño responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+        
+            header img {
+                width: 50px;
+            }
+        
+            header h1 {
+                font-size: 1.8em;
+            }
+        
+            nav {
+                display: flex;
+                flex-direction: column;
+            }
+        
+            nav a {
+                display: block;
+                padding: 0.8rem;
+            }
+        
+            section {
+                padding: 2rem 1rem;
+                margin: 1rem auto;
+            }
+        
+            .carreras-grid {
+                grid-template-columns: 1fr;
+            }
+        
+            .carrera-card {
+                padding: 1rem;
+            }
+        
+            .map-container {
+                height: 250px;
+            }
+        
+            footer {
+                padding: 1rem;
+            }
+        }
+        /* El menú hamburguesa no es visible por defecto */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--light-color);
+}
+
+/* Estilos para el menú desplegable en pantallas pequeñas */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--secondary-color);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links a {
+        padding: 1rem;
+        display: block;
+    }
+
+    .menu-toggle {
+        display: block;  /* El botón hamburguesa aparece en pantallas pequeñas */
+    }
+
+    /* Mostrar el menú cuando se activa */
+    .nav-links.show {
+        display: flex;
+    }
+}
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo1.png" alt="Logo Preparatoria Garmendia"> <!-- Aquí va tu logo -->
+
+        <h1>Preparatoria Garmendia</h1>
+        <p>Formando líderes con educación integral y técnica</p>
+    </header>
+
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+<nav class="nav-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#carreras">Carreras Técnicas</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+    <a href="login.html">Control Escolar</a>
+</nav>
+
+
+    <section id="inicio">
+        <h2>Bienvenidos a la Preparatoria Garmendia</h2>
+        <p>En la Preparatoria Garmendia nos dedicamos a ofrecer una educación de calidad que combina el bachillerato general con carreras técnicas especializadas. Nuestro objetivo es preparar a los jóvenes para el futuro, brindándoles las herramientas necesarias para destacar en el ámbito laboral o continuar sus estudios superiores.</p>
+    </section>
+
+    <section id="carreras">
+        <h2>Carreras Técnicas</h2>
+        <p>Ofrecemos una variedad de carreras técnicas diseñadas para satisfacer las demandas del mercado laboral:</p>
+        <div class="carreras-grid">
+            <div class="carrera-card">
+                <h3>Informática Administrativa</h3>
+            </div>
+            <div class="carrera-card">
+                <h3>Diseño Gráfico</h3>
+            </div>
+            <div class="carrera-card">
+                <h3>Contabilidad</h3>
+            </div>
+            <div class="carrera-card">
+                <h3>Turismo</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <h2>Nosotros</h2>
+        <div class="mision-vision">
+            <div class="mision">
+                <h3>Misión</h3>
+                <p>Brindar una formación integral que combine la educación académica con la técnica, capacitando a los jóvenes para enfrentar los desafíos del mercado laboral con competencias y valores. Nos comprometemos a ser una institución que promueve el pensamiento crítico, la creatividad y el desarrollo humano, enfocados en la mejora continua de nuestros estudiantes.</p>
+            </div>
+    
+            <div class="vision">
+                <h3>Visión</h3>
+                <p>Ser una institución educativa líder en la formación de jóvenes con una alta preparación académica y técnica, reconocida por su innovación, calidad educativa y compromiso con la sociedad. Queremos que nuestros egresados se distingan por su capacidad de adaptación a los cambios y su habilidad para contribuir de manera efectiva en diversos sectores productivos.</p>
+            </div>
+        </div>
+    
+        <div class="descripcion">
+            <h3>¿Por qué elegir una Preparatoria Técnica?</h3>
+            <p>En nuestra Preparatoria Técnica, combinamos el ciclo escolar del bachillerato con una formación especializada en diversas áreas técnicas. Ofrecemos a nuestros estudiantes una educación que les permite obtener una preparación profesional antes de concluir sus estudios de preparatoria, lo que les da una ventaja competitiva en el mercado laboral. Además, nuestros programas están diseñados para facilitar el acceso a estudios superiores, brindando una sólida base para aquellos que decidan continuar con su educación universitaria.</p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contact-info">
+            <p>
+                <i class="fas fa-phone"></i>
+                <a href="tel:5979782819">597 978 2819</a>
+            </p>
+
+            <p>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:bachilleratogarmendia_cetu@hotmail.com">bachilleratogarmendia_cetu@hotmail.com</a>
+            </p>
+            <p>
+                <i class="fab fa-facebook"></i>
+                <a href="https://www.facebook.com/BachilleratoEnriqueFernandezGarmendia" target="_blank">Síguenos en Facebook</a>
+            </p>
+        </div>
+        <div class="map-container">
+            <p>Estamos ubicados en Av. 5 de Febrero #20 Amecameca.</p>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!4v1707514321749!6m8!1m7!1sZzc0ogCUCP8enB19CV002w!2m2!1d19.12970084147166!2d-98.77089746392567!3f26.51!4f-2.96!5f0.7820865974627469"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Preparatoria Garmendia. Todos los derechos reservados.</p>
+    </footer>
+</body>
+<script>
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            if (!this.getAttribute('href').startsWith('#')) {
+                return;
+            }
+
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+        const navItems = document.querySelectorAll(".nav-links a");  // Selecciona todos los enlaces
+    
+        // Al hacer clic en el botón hamburguesa, alternamos la clase 'show' para mostrar/ocultar el menú
+        menuToggle.addEventListener("click", function() {
+            navLinks.classList.toggle("show");
+        });
+    
+        // Al hacer clic en cualquier enlace, ocultamos el menú
+        navItems.forEach(item => {
+            item.addEventListener("click", function() {
+                navLinks.classList.remove("show");  // Elimina la clase 'show' para ocultar el menú
+            });
+        });
+    });
+    
+    
+</script>
+</html>
