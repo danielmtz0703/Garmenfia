@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Escuela</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #FF9A76;
+            --secondary: #FF785A;
+            --accent: #FF6F61;
+            --light: #FFF6EA;
+            --dark: #5A3E36;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 40px 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 40px;
+            font-size: 36px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .contact-info, .contact-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-info:hover, .contact-form:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .info-content h3 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 2px rgba(255, 120, 90, 0.2);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .social-media {
+            display: flex;
+            margin-top: 25px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .map {
+            margin-top: 30px;
+            height: 200px;
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.2s; }
+        .fade-in:nth-child(2) { animation-delay: 0.4s; }
+        .fade-in:nth-child(3) { animation-delay: 0.6s; }
+        .fade-in:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos para mensajes de alerta */
+        .alert {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #FFD1B3;
+            color: #5A3E36;
+            border: 1px solid #FF9A76;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+
+
+
+
+       
+        
+        .contact-info ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .contact-info li {
+            margin: 10px 0;
+        }
+        
+        .contact-info strong {
+            color: #e74c3c; /* Guinda */
+            font-weight: bold;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contáctanos</h1>
+        
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2><strong>NOTAS IMPORTANTES</strong></h2><br>
+                <ul>
+                    <li><strong>Los ramos son elaborados con mucho amor, dedicación y perfección.</strong> Todos nuestros arreglos se manejan bajo pedido, con un anticipo del 50% a través de transferencia o depósito bancario. El pago final se realiza contra entrega.</li>
+                    <li><strong>No contamos con servicio de paquetería,</strong> por lo que los pedidos se entregan en un punto de conveniencia para ambas partes.</li>
+                    <li><strong>Para asegurar la entrega a tiempo,</strong> todos los pedidos deben realizarse con al menos <strong>4 días de anticipación para ramos pequeños</strong> y hasta <strong>una semana para ramos grandes.</strong></li>
+                    <li><strong>Si deseas añadir accesorios adicionales o personalizar tu ramo,</strong> por favor comunícalo al socio que te atiende, ya sea mediante mensaje, correo electrónico o llamada telefónica.</li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                    <h2><strong>Sugerencias adicionales:</strong></h2><br>
+                    - Los pedidos para fechas especiales (como Día de la Madre, San Valentín, etc.) deben hacerse con más de una semana de anticipación para garantizar disponibilidad.<br>
+                    - Si prefieres un diseño exclusivo, puedes comunicar tus ideas o temas y trabajaremos en una propuesta personalizada para ti.<br>
+                    - Los pagos pueden ser realizados mediante diversas plataformas de pago, como transferencia bancaria, PayPal o pago en efectivo al momento de la entrega.<br>
+                    - También ofrecemos ramos con opciones de entrega urgente, con un cargo adicional por la rapidez del servicio.<br>
+                
+            </div>
+            
+            <div class="contact-info">
+                <h2>Información de Contacto</h2>
+                
+                <div class="info-item fade-in">
+                    <div class="info-icon">&#128205;</div>
+                    <div class="info-content">
+                        <h3>Dirección</h3>
+                        <p>Los Reyes La Paz Edo. Méx</p>
+                        <p>Tecamachalco</p>
+                    </div>
+                </div>
+                
+                <div class="info-item fade-in">
+                    <div class="info-icon">&#128222;</div>
+                    <div class="info-content">
+                        <h3>Teléfono</h3>
+                        <p>+52 (55) 1234-5678</p>
+                    </div>
+                </div>
+                
+                <div class="info-item fade-in">
+                    <div class="info-icon">&#9993;</div>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>petalosyalas@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item fade-in">
+                    <div class="info-icon">&#128197;</div>
+                    <div class="info-content">
+                        <h3>Horario de Atención</h3>
+                        <p>Lunes a Viernes: 9:00 AM - 8:00 PM</p>
+                        <p>Sábados: 9:00 AM - 1:00 PM</p>
+                        <p>Los correos tardan generalmente de una a dos horas en ser atendidos</p>
+                    </div>
+                </div>
+                
+                <div class="social-media">
+                    <a href="https://www.facebook.com/norma.capistran.54" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i> </a>
+                    <a href="https://www.instagram.com/petalos_y_alas_momis?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon"><i class="fab fa-instagram"></i> </a>
+                    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i> </a>
+                </div>
+                
+                
+            </div>
+            
+            <div class="contact-form">
+                <h2>Envíanos un Mensaje</h2>
+                
+                <!-- Alertas -->
+                <div id="alertSuccess" class="alert alert-success">
+                    Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.
+                </div>
+                <div id="alertError" class="alert alert-error">
+                    Hubo un problema al enviar el mensaje. Por favor intenta nuevamente.
+                </div>
+                
+                <!-- IMPORTANTE: Reemplaza "tucorreo@ejemplo.com" con tu dirección de correo real -->
+                <form id="contactForm" action="https://formsubmit.co/loreleyhrz@gmail.com" method="POST">
+                    <!-- Campos ocultos para configuración de FormSubmit -->
+                    <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Escuela">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value=""> <!-- Se completa con JavaScript -->
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha">Fecha de entrega</label>
+                        <input type="date" id="fecha" name="fecha">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <select id="subject" name="subject">
+                            <option value="Compra">Compra</option>
+                            <option value="cotizacion">Cotización</option>
+                            <option value="ramopersonalizado">Ramo Personalizado</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" id="submitBtn">Enviar Mensaje</button>
+                    <button type="submit" class="btn" onclick="cerrar()">Cerrar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cerrar() {
+            window.location.href = "index.html"; // Redirige a contacto.html
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Establecer la URL actual como página de redirección
+            document.querySelector('input[name="_next"]').value = window.location.href;
+            
+            // Animación para elementos fade-in
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 200 * (index + 1));
+            });
+
+            // Capturar envío del formulario para mostrar cargando
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            form.addEventListener('submit', function(e) {
+                // Mostrar estado de carga
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
+                submitBtn.disabled = true;
+                
+                // Usar timeout para simular carga en la demo (puedes quitar esto en producción)
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 20000); // Timeout de seguridad
+            });
+            
+            // Verificar si hay un mensaje de éxito en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                const alertSuccess = document.getElementById('alertSuccess');
+                alertSuccess.style.display = 'block';
+                
+                // Ocultar después de 5 segundos
+                setTimeout(() => {
+                    alertSuccess.style.display = 'none';
+                    // Limpiar la URL
+                    history.replaceState({}, document.title, window.location.pathname);
+                }, 5000);
+            }
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+        
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Evita el envío inmediato del formulario
+        
+                // Guardar el texto original del botón
+                const originalText = submitBtn.textContent;
+                
+                // Mostrar animación de carga en el botón
+                submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
+                submitBtn.disabled = true;
+        
+                // Simular envío con tiempo de espera (ajusta el tiempo según la animación)
+                setTimeout(() => {
+                    // Restaurar el texto original del botón
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+        
+                    // Mostrar alerta después de la animación
+                    alert("¡Tu mensaje ha sido enviado con éxito! Pronto nos pondremos en contacto contigo.");
+        
+                    // Enviar el formulario después de la alerta
+                    form.submit();
+                }, 2000); // Ajusta este tiempo al de la animación del botón
+            });
+        });
+        
+        
+    </script>
+
+
+</body>
+</html>
